@@ -33,7 +33,7 @@ function setup() {
 
 const popoverOpen = (threadRef: ScopedThreadRef) =>
   selectThreadPanelOpen(
-    useRightPanelStore.getState().threadPanelVisibilityByThreadKey,
+    useRightPanelStore.getState(),
     threadRef,
     "popover",
   );

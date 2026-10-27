@@ -70,7 +70,7 @@ export function ChatCanvas({
   const detailsCardInlineOpen = useRightPanelStore((state) =>
     threadRef === null
       ? false
-      : selectThreadPanelOpen(state.threadPanelVisibilityByThreadKey, threadRef, "inline"),
+      : selectThreadPanelOpen(state, threadRef, "inline"),
   );
   const model = resolveChatCanvasModel({
     measurements,
