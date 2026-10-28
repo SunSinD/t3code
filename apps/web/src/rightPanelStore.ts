@@ -352,7 +352,7 @@ const updateThreadPanelVisibilityMap = (
 
 type RightPanelStoreData = Pick<
   RightPanelStoreState,
-  "byThreadKey" | "threadPanelVisibilityByThreadKey" | "threadPanelInlineOpenByDefault"
+  "byThreadKey" | "threadPanelVisibilityByThreadKey"
 >;
 
 type ThreadPanelVisibilityState = Pick<
@@ -361,7 +361,7 @@ type ThreadPanelVisibilityState = Pick<
 >;
 
 const updateThread = (
-  state: RightPanelStoreData,
+  state: RightPanelStoreData & ThreadPanelVisibilityState,
   threadKey: string,
   updater: (current: ThreadRightPanelState) => ThreadRightPanelState,
 ): RightPanelStoreData => {

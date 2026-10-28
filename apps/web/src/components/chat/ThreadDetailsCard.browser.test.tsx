@@ -32,11 +32,7 @@ function setup() {
 }
 
 const popoverOpen = (threadRef: ScopedThreadRef) =>
-  selectThreadPanelOpen(
-    useRightPanelStore.getState(),
-    threadRef,
-    "popover",
-  );
+  selectThreadPanelOpen(useRightPanelStore.getState(), threadRef, "popover");
 
 function Card({
   threadRef,

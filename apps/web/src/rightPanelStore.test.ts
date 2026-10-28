@@ -717,12 +717,10 @@ describe("rightPanelStore", () => {
     useRightPanelStore.getState().setThreadPanelOpen(refA, "popover", true);
     useRightPanelStore.getState().open(refA, "diff");
 
-    expect(
-      selectThreadPanelVisibility(
-        useRightPanelStore.getState(),
-        refA,
-      ),
-    ).toEqual({ inlineOpen: true, popoverOpen: false });
+    expect(selectThreadPanelVisibility(useRightPanelStore.getState(), refA)).toEqual({
+      inlineOpen: true,
+      popoverOpen: false,
+    });
   });
 
   it("keeps an open popover visible by promoting it to inline when the real panel closes", () => {
@@ -732,12 +730,10 @@ describe("rightPanelStore", () => {
     store.setThreadPanelOpen(refA, "popover", true);
     store.close(refA);
 
-    expect(
-      selectThreadPanelVisibility(
-        useRightPanelStore.getState(),
-        refA,
-      ),
-    ).toEqual({ inlineOpen: true, popoverOpen: true });
+    expect(selectThreadPanelVisibility(useRightPanelStore.getState(), refA)).toEqual({
+      inlineOpen: true,
+      popoverOpen: true,
+    });
   });
 
   it("opens workspace-root links as the singleton files explorer", () => {
