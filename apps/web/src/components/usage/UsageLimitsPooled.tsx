@@ -191,7 +191,7 @@ function SegmentPopover({
           </Row>
         ) : null}
         {timeLeft !== null ? <Row label="Even pace">{timeLeft}% left by now</Row> : null}
-        {reset && reset.restoresPercent > 0 ? (
+        {reset && reset.member.refillPercent > 0 ? (
           <Row label="After reset">
             {Math.round(Math.min(100, remaining + reset.member.refillPercent))}% left on this
             account

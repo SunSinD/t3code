@@ -609,7 +609,7 @@ export function UsageLimitAccountScreen({ route }: AccountScreenProps) {
                   Even pace: {evenPace}% left by now
                 </Text>
               ) : null}
-              {reset && reset.restoresPercent > 0 ? (
+              {reset && reset.member.refillPercent > 0 ? (
                 <Text className="text-sm text-foreground-muted">
                   After reset:{" "}
                   {Math.round(Math.min(100, remainingPercent(window) + reset.member.refillPercent))}
