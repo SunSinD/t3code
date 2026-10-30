@@ -397,7 +397,8 @@ const updateThread = (
       threadKey,
       state.threadPanelInlineOpenByDefault,
       (visibility) =>
-        visibility.popoverOpen && !visibility.inlineOpen
+        visibility.popoverOpen &&
+        state.threadPanelVisibilityByThreadKey[threadKey]?.inlineOpen === false
           ? { ...visibility, inlineOpen: true }
           : visibility,
     );

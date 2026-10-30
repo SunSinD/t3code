@@ -724,16 +724,31 @@ describe("rightPanelStore", () => {
     expect(selectThreadPanelOpen(useRightPanelStore.getState(), refB, "inline")).toBe(false);
   });
 
-  it("does not save the inherited inline state when only the popover opens", async () => {
-    useRightPanelStore.getState().setThreadPanelOpen(refA, "popover", true);
-    await reloadRightPanelStore();
-    useRightPanelStore.getState().setThreadPanelInlineOpenByDefault(false);
+  it.each([false, true])(
+    "does not save the inherited inline state after temporary popover use (close panel: %s)",
+    async (closePanel) => {
+      const store = useRightPanelStore.getState();
+      if (closePanel) {
+        store.setThreadPanelInlineOpenByDefault(false);
+        store.open(refA, "diff");
+      }
+      store.setThreadPanelOpen(refA, "popover", true);
+      if (closePanel) {
+        store.close(refA);
+        expect(selectThreadPanelVisibility(useRightPanelStore.getState(), refA)).toEqual({
+          inlineOpen: false,
+          popoverOpen: true,
+        });
+      }
+      await reloadRightPanelStore();
+      useRightPanelStore.getState().setThreadPanelInlineOpenByDefault(false);
 
-    expect(selectThreadPanelVisibility(useRightPanelStore.getState(), refA)).toEqual({
-      inlineOpen: false,
-      popoverOpen: false,
-    });
-  });
+      expect(selectThreadPanelVisibility(useRightPanelStore.getState(), refA)).toEqual({
+        inlineOpen: false,
+        popoverOpen: false,
+      });
+    },
+  );
 
   it("keeps a thread closed by hand closed when a panel tab opens while the default is off", () => {
     const store = useRightPanelStore.getState();
