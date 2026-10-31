@@ -151,6 +151,8 @@ it("keeps the account label and reset summary on a one-account row of a multi-ac
   await expect.element(screen.getByText("monthly-only", { exact: true }).first()).toBeVisible();
   await expect.element(screen.getByText("Next account reset in 29d 17h")).toBeVisible();
   await expect.element(screen.getByText("Next account reset in 2h 55m")).toBeVisible();
+  await expect.element(screen.getByText("average left", { exact: true })).toBeVisible();
+  await expect.element(screen.getByText("Across 2 accounts", { exact: true })).toBeVisible();
   await screen.getByRole("button", { name: /^later-session: 99% left/ }).click();
   await expect.element(screen.getByText("100% left on this account")).toBeVisible();
 });
